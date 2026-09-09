@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="si" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ශ්‍රී සම්බෝධි දහම් පාසල</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Gemunu Libre"', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'bounce-in': 'bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Styles to match the React App */
+        body {
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        /* Hide scrollbar for cleaner look if needed, but default is fine */
+    </style>
+</head>
+<body class="min-h-screen transition-colors duration-300 bg-slate-50 text-stone-900 dark:bg-stone-950 dark:text-white flex flex-col">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white dark:bg-stone-900 shadow-sm sticky top-0 z-40 border-b border-stone-200 dark:border-stone-800 transition-colors duration-300">
+        <!-- Buddhist Flag Colors -->
+        <div class="h-1.5 w-full flex">
+            <div class="flex-1 bg-[#002FA7]"></div>
+            <div class="flex-1 bg-[#F9A602]"></div>
+            <div class="flex-1 bg-[#ED1B24]"></div>
+            <div class="flex-1 bg-[#FFFFFF]"></div>
+            <div class="flex-1 bg-[#FF7900]"></div>
+        </div>
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center cursor-pointer space-x-3" onclick="navigateTo('home')">
+                    <img src="Gemini_Generated_Image_.jpg" alt="Logo" class="w-14 h-14 rounded-full object-cover shadow-sm border-2 border-stone-200 dark:border-stone-700"/>
+                    <div>
+                        <h1 class="text-3xl font-bold text-stone-800 dark:text-stone-100 leading-tight">ශ්‍රී සම්බෝධි</h1>
+                        <p class="text-base text-stone-500 dark:text-stone-400 font-medium tracking-wide">දහම් පාසල</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-1 items-center">
+                    <button onclick="navigateTo('home')" class="nav-btn desktop-nav-btn active-nav flex items-center space-x-1 px-4 py-2 rounded-full text-lg font-semibold transition-all duration-300 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white" data-target="home">
+                        <i data-lucide="home" class="w-[18px] h-[18px]"></i><span>මුල් පිටුව</span>
+                    </button>
+                    <button onclick="navigateTo('about')" class="nav-btn desktop-nav-btn flex items-center space-x-1 px-4 py-2 rounded-full text-lg font-semibold transition-all duration-300 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white" data-target="about">
+                        <i data-lucide="info" class="w-[18px] h-[18px]"></i><span>අප ගැන</span>
+                    </button>
+                    <button onclick="navigateTo('classes')" class="nav-btn desktop-nav-btn flex items-center space-x-1 px-4 py-2 rounded-full text-lg font-semibold transition-all duration-300 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white" data-target="classes">
+                        <i data-lucide="book" class="w-[18px] h-[18px]"></i><span>පන්ති</span>
+                    </button>
+                    <button onclick="navigateTo('teachers')" class="nav-btn desktop-nav-btn flex items-center space-x-1 px-4 py-2 rounded-full text-lg font-semibold transition-all duration-300 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white" data-target="teachers">
+                        <i data-lucide="users" class="w-[18px] h-[18px]"></i><span>ගුරුවරු</span>
+                    </button>
+                    <button onclick="navigateTo('contact')" class="nav-btn desktop-nav-btn flex items-center space-x-1 px-4 py-2 rounded-full text-lg font-semibold transition-all duration-300 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white" data-target="contact">
+                        <i data-lucide="phone" class="w-[18px] h-[18px]"></i><span>සම්බන්ධ වන්න</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="ml-2 p-2 rounded-full text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors" title="Toggle Dark Mode">
+                        <i data-lucide="moon" id="theme-icon-desktop" class="w-[22px] h-[22px]"></i>
+                    </button>
+
+                    <!-- Auth Buttons (Desktop) -->
+                    <button id="nav-reg-btn-desktop" onclick="navigateTo('register')" class="ml-4 bg-yellow-600 hover:bg-yellow-700 text-white px-5 py-2.5 rounded-full font-bold shadow-sm transition-transform hover:scale-105 flex items-center space-x-1 text-lg">
+                        <i data-lucide="user-plus" class="w-[18px] h-[18px]"></i>
+                        <span>ලියාපදිංචිය</span>
+                    </button>
+                    <button id="nav-signin-btn-desktop" onclick="navigateTo('signin')" class="ml-2 bg-stone-800 dark:bg-stone-200 hover:bg-stone-900 dark:hover:bg-white text-white dark:text-stone-900 px-5 py-2.5 rounded-full font-bold shadow-sm transition-transform hover:scale-105 flex items-center space-x-1 text-lg">
+                        <i data-lucide="log-in" class="w-[18px] h-[18px]"></i>
+                        <span>පුරනය</span>
+                    </button>
+
+                    <!-- Profile Avatar (Desktop) -->
+                    <button id="nav-profile-btn-desktop" onclick="navigateTo('profile')" class="hidden ml-4 w-12 h-12 rounded-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold flex items-center justify-center overflow-hidden border-2 border-stone-200 dark:border-stone-700 shadow-sm transition-transform hover:scale-105 text-xl">
+                        <span id="profile-initial-desktop">A</span>
+                        <img id="profile-img-desktop" src="" alt="Profile" class="hidden w-full h-full object-cover" />
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button & Dark Mode -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button onclick="toggleDarkMode()" class="p-2 text-stone-600 dark:text-stone-300">
+                        <i data-lucide="moon" id="theme-icon-mobile" class="w-[24px] h-[24px]"></i>
+                    </button>
+                    <button class="text-stone-800 dark:text-stone-100 p-2" onclick="toggleMobileMenu()">
+                        <i data-lucide="menu" id="mobile-menu-icon" class="w-[28px] h-[28px]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 shadow-inner">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <button onclick="navigateTo('home')" class="nav-btn mobile-nav-btn active-nav-mobile flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="home">
+                    <i data-lucide="home" class="w-[20px] h-[20px]"></i><span>මුල් පිටුව</span>
+                </button>
+                <button onclick="navigateTo('about')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="about">
+                    <i data-lucide="info" class="w-[20px] h-[20px]"></i><span>අප ගැන</span>
+                </button>
+                <button onclick="navigateTo('classes')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="classes">
+                    <i data-lucide="book" class="w-[20px] h-[20px]"></i><span>පන්ති</span>
+                </button>
+                <button onclick="navigateTo('teachers')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="teachers">
+                    <i data-lucide="users" class="w-[20px] h-[20px]"></i><span>ගුරුවරු</span>
+                </button>
+                <button onclick="navigateTo('contact')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="contact">
+                    <i data-lucide="phone" class="w-[20px] h-[20px]"></i><span>සම්බන්ධ වන්න</span>
+                </button>
+                <div id="mobile-auth-section" class="border-t border-stone-300 dark:border-stone-700 pt-2 mt-2">
+                    <button id="nav-reg-btn-mobile" onclick="navigateTo('register')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-yellow-600 dark:text-yellow-500 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="register">
+                        <i data-lucide="user-plus" class="w-[20px] h-[20px]"></i><span>නව ලියාපදිංචිය</span>
+                    </button>
+                    <button id="nav-signin-btn-mobile" onclick="navigateTo('signin')" class="nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-800" data-target="signin">
+                        <i data-lucide="log-in" class="w-[20px] h-[20px]"></i><span>පුරනය වන්න</span>
+                    </button>
+                </div>
+                <button id="nav-profile-btn-mobile" onclick="navigateTo('profile')" class="hidden nav-btn mobile-nav-btn flex items-center w-full space-x-3 px-4 py-3 rounded-lg text-left font-semibold text-xl transition-colors text-yellow-600 dark:text-yellow-500 hover:bg-stone-200 dark:hover:bg-stone-800 border-t border-stone-300 dark:border-stone-700 mt-2 pt-3" data-target="profile">
+                    <div class="w-[28px] h-[28px] rounded-full bg-yellow-600 text-white flex items-center justify-center overflow-hidden text-sm">
+                        <span id="profile-initial-mobile">A</span>
+                        <img id="profile-img-mobile" src="" alt="Profile" class="hidden w-full h-full object-cover" />
+                    </div>
+                    <span>මගේ ගිණුම</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- 1. Home Page -->
+        <section id="home" class="page-section active animate-fade-in">
+            <!-- Hero Section -->
+            <div class="relative bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-100 overflow-hidden border-b border-stone-200 dark:border-stone-800 transition-colors duration-300">
+                <!-- Faint Background Image -->
+                <div class="absolute inset-0 opacity-10 dark:opacity-5">
+                    <img src="https://images.unsplash.com/photo-1544822688-c5f41d2c1975?auto=format&fit=crop&q=80&w=1920" alt="Dhamma Background" class="w-full h-full object-cover" />
+                </div>
+                <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <span class="inline-block py-1.5 px-4 rounded-full bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 text-lg font-bold tracking-wider mb-6 border border-stone-200 dark:border-stone-700 shadow-sm">
+                                සුඛෝ බුද්ධානං උප්පාදෝ
+                            </span>
+                            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-stone-800 dark:text-stone-100">
+                                ගුණ දම් සපිරි <br/><span class="text-yellow-600 dark:text-yellow-500">හෙට දවසක්</span> වෙනුවෙන්...
+                            </h1>
+                            <p class="text-2xl md:text-3xl text-stone-600 dark:text-stone-300 max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed font-medium">
+                                ඔබේ දරුවාගේ අධ්‍යාත්මික හා ගුණධර්ම සංවර්ධනය උදෙසා, බෞද්ධ පරිසරයක් තුළින් යහපත් පුරවැසියෙකු බිහිකිරීමේ අපගේ ප්‍රයත්නයට අදම එක්වන්න.
+                            </p>
+                            <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                                <button id="home-main-action-btn" onclick="handleMainAction()" class="bg-stone-800 dark:bg-stone-200 hover:bg-stone-900 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3.5 px-8 rounded-full text-2xl shadow-md transition-all transform hover:-translate-y-1 w-full sm:w-auto flex justify-center items-center space-x-2">
+                                    <span id="home-main-action-text">අලුතින් ලියාපදිංචි වන්න</span>
+                                    <i data-lucide="chevron-right" class="w-[24px] h-[24px]"></i>
+                                </button>
+                                <button onclick="navigateTo('about')" class="bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-300 font-bold py-3.5 px-8 rounded-full text-2xl shadow-sm transition-all w-full sm:w-auto">
+                                    අප ගැන වැඩිදුරටත්
+                                </button>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
+                            <img src="https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?auto=format&fit=crop&q=80&w=800" alt="Dhamma School" class="rounded-full w-72 h-72 lg:w-96 lg:h-96 object-cover border-8 border-white dark:border-stone-800 shadow-xl transform hover:scale-105 transition-transform duration-500" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features/Highlights Section -->
+            <div class="py-16 bg-white dark:bg-stone-900 transition-colors duration-300">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-24 relative z-20">
+                        <div class="bg-white dark:bg-stone-950 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-stone-100 dark:border-stone-800 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 flex items-center justify-center mb-6 shadow-sm">
+                                <i data-lucide="book" class="w-[32px] h-[32px]"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-3">දහම් අධ්‍යාපනය</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed">1 ශ්‍රේණියේ සිට ධර්මාචාර්ය දක්වා ක්‍රමවත් විෂය නිර්දේශයක් යටතේ.</p>
+                        </div>
+                        <div class="bg-white dark:bg-stone-950 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-stone-100 dark:border-stone-800 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 flex items-center justify-center mb-6 shadow-sm">
+                                <i data-lucide="users" class="w-[32px] h-[32px]"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-3">ප්‍රවීණ ආචාර්ය මණ්ඩලය</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed">වසර ගණනාවක පළපුරුද්ද ඇති කරුණාවන්ත ගුරු මණ්ඩලයක් මගින් ඉගැන්වීම්.</p>
+                        </div>
+                        <div class="bg-white dark:bg-stone-950 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-stone-100 dark:border-stone-800 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 flex items-center justify-center mb-6 shadow-sm">
+                                <i data-lucide="heart" class="w-[32px] h-[32px]"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-3">ප්‍රායෝගික පුහුණුව</h3>
+                            <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed">භාවනා, බෝධි පූජා සහ ශ්‍රමදාන ඇතුළු ප්‍රායෝගික ගුණධර්ම වැඩසටහන්.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest News / Announcements -->
+            <div class="py-16 bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 transition-colors duration-300">
+                <div class="container mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">දැනුම්දීම්</span>
+                        <h2 class="text-4xl font-extrabold text-stone-800 dark:text-stone-100 mt-2">නවතම තොරතුරු</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="flex bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow-sm border border-stone-200 dark:border-stone-800 hover:shadow-md transition group">
+                            <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 p-4 flex flex-col justify-center items-center min-w-[100px] group-hover:bg-stone-700 dark:group-hover:bg-white transition">
+                                <span class="text-4xl font-bold">15</span>
+                                <span class="text-lg font-medium">ජනවාරි</span>
+                            </div>
+                            <div class="p-5 flex flex-col justify-center">
+                                <h4 class="font-bold text-2xl text-stone-800 dark:text-stone-100 mb-1">2026 නව වසර සඳහා පාසල් ආරම්භය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl">සියලුම ශ්‍රේණි සඳහා නව වසරේ දහම් පාසල් කටයුතු පෙරවරු 8.00 ට ආරම්භ වේ.</p>
+                            </div>
+                        </div>
+                        <div class="flex bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow-sm border border-stone-200 dark:border-stone-800 hover:shadow-md transition group">
+                            <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 p-4 flex flex-col justify-center items-center min-w-[100px] group-hover:bg-stone-700 dark:group-hover:bg-white transition">
+                                <span class="text-4xl font-bold">28</span>
+                                <span class="text-lg font-medium">පෙබරවාරි</span>
+                            </div>
+                            <div class="p-5 flex flex-col justify-center">
+                                <h4 class="font-bold text-2xl text-stone-800 dark:text-stone-100 mb-1">වාර්ෂික ත්‍යාග ප්‍රදානෝත්සවය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl">පසුගිය වසරේ දක්ෂතා දැක්වූ සිසුන්ට ත්‍යාග ප්‍රදානය විහාරස්ථාන ධර්ම ශාලාවේදී.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Us Page -->
+        <section id="about" class="page-section animate-fade-in">
+            <div class="container mx-auto px-4 py-16 text-stone-800 dark:text-stone-100">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">ඉතිහාසය සහ දැක්ම</span>
+                        <h2 class="text-5xl font-extrabold mt-2">අප ගැන</h2>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-800 p-8 md:p-10 mb-10 border-l-4 border-l-stone-800 dark:border-l-stone-200">
+                        <h3 class="text-4xl font-bold mb-4">අපගේ ගමන්මග</h3>
+                        <p class="text-stone-600 dark:text-stone-300 leading-relaxed text-2xl text-justify">
+                            ශ්‍රී සම්බෝධි දහම් පාසල 1990 වර්ෂයේදී ආරම්භ කරන ලද අතර, එදා සිට මේ දක්වා දහස් ගණනක් දරුවන්ට දහම් දැනුම හා ගුණධර්ම ලබාදීමට අපට හැකි වී ඇත. ප්‍රදේශයේ ප්‍රධානතම ආගමික අධ්‍යාපන ආයතනයක් ලෙස අද වන විට සිසුන් 800 කට අධික පිරිසක් මෙහි අධ්‍යාපනය ලබති.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div class="bg-stone-50 dark:bg-stone-800 rounded-2xl shadow-sm p-8 text-center border border-stone-200 dark:border-stone-700">
+                            <div class="w-16 h-16 mx-auto bg-white dark:bg-stone-900 shadow-sm rounded-full flex items-center justify-center mb-6">
+                                <span class="text-3xl font-bold text-stone-800 dark:text-stone-100">දැක්ම</span>
+                            </div>
+                            <p class="text-stone-700 dark:text-stone-300 font-medium italic text-2xl leading-relaxed">
+                                "බුදු දහමේ ආලෝකයෙන් ප්‍රභාමත් වූ, ගුණ නැණ බෙලෙන් පිරිපුන් යහපත් අනාගත පරපුරක් දැයට දායාද කිරීම."
+                            </p>
+                        </div>
+                        <div class="bg-stone-50 dark:bg-stone-800 rounded-2xl shadow-sm p-8 text-center border border-stone-200 dark:border-stone-700">
+                            <div class="w-16 h-16 mx-auto bg-white dark:bg-stone-900 shadow-sm rounded-full flex items-center justify-center mb-6">
+                                <span class="text-3xl font-bold text-stone-800 dark:text-stone-100">මෙහෙවර</span>
+                            </div>
+                            <p class="text-stone-700 dark:text-stone-300 font-medium italic text-2xl leading-relaxed">
+                                "සම්බුද්ධ දේශනාව පදනම් කරගනිමින්, දරුවන්ගේ ආකල්ප, කුසලතා සහ දැනුම වර්ධනය කර, ආදර්ශමත් ජීවිතයකට මග පෙන්වීම."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Classes Page -->
+        <section id="classes" class="page-section animate-fade-in">
+            <div class="container mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">විෂය නිර්දේශය</span>
+                    <h2 class="text-5xl font-extrabold text-stone-800 dark:text-stone-100 mt-2">දහම් පන්ති</h2>
+                    <p class="text-stone-500 dark:text-stone-400 mt-4 max-w-2xl mx-auto font-medium text-2xl">
+                        සෑම ඉරිදා දිනකම පෙරවරු 8.00 සිට දහවල් 12.00 දක්වා පන්ති පැවැත්වේ.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <!-- Class Card 1 -->
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col">
+                        <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 py-4 px-6 text-center">
+                            <h3 class="font-bold text-2xl">1 - 3 ශ්‍රේණි</h3>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-stone-800 dark:text-stone-100 mb-3 text-3xl">ප්‍රාථමික අංශය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed mb-6">මූලික බුද්ධ චරිතය, සරල ගාථා, සහ යහපත් පුරුදු හඳුන්වා දීම.</p>
+                            </div>
+                            <div class="flex items-center text-stone-700 dark:text-stone-300 text-lg font-semibold bg-stone-50 dark:bg-stone-800 p-3 rounded-lg border border-stone-100 dark:border-stone-700">
+                                <i data-lucide="clock" class="w-[18px] h-[18px] mr-2 text-stone-500 dark:text-stone-400"></i>
+                                ඉරිදා පෙ.ව 8:00 - 12:00
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Class Card 2 -->
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col">
+                        <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 py-4 px-6 text-center">
+                            <h3 class="font-bold text-2xl">4 - 5 ශ්‍රේණි</h3>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-stone-800 dark:text-stone-100 mb-3 text-3xl">කනිෂ්ඨ අංශය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed mb-6">දහම් පාසල් අවසාන විභාගයට පෙරහුරුව සහ බෞද්ධ කථාන්දර.</p>
+                            </div>
+                            <div class="flex items-center text-stone-700 dark:text-stone-300 text-lg font-semibold bg-stone-50 dark:bg-stone-800 p-3 rounded-lg border border-stone-100 dark:border-stone-700">
+                                <i data-lucide="clock" class="w-[18px] h-[18px] mr-2 text-stone-500 dark:text-stone-400"></i>
+                                ඉරිදා පෙ.ව 8:00 - 12:00
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Class Card 3 -->
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col">
+                        <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 py-4 px-6 text-center">
+                            <h3 class="font-bold text-2xl">6 - 9 ශ්‍රේණි</h3>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-stone-800 dark:text-stone-100 mb-3 text-3xl">මධ්‍යම අංශය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed mb-6">ගැඹුරු දහම් කරුණු, අභිධර්මය මූලික කරුණු සහ පාලි භාෂාව හඳුන්වාදීම.</p>
+                            </div>
+                            <div class="flex items-center text-stone-700 dark:text-stone-300 text-lg font-semibold bg-stone-50 dark:bg-stone-800 p-3 rounded-lg border border-stone-100 dark:border-stone-700">
+                                <i data-lucide="clock" class="w-[18px] h-[18px] mr-2 text-stone-500 dark:text-stone-400"></i>
+                                ඉරිදා පෙ.ව 8:00 - 12:00
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Class Card 4 -->
+                    <div class="bg-white dark:bg-stone-900 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-stone-200 dark:border-stone-800 overflow-hidden flex flex-col">
+                        <div class="bg-stone-800 dark:bg-stone-200 text-white dark:text-stone-900 py-4 px-6 text-center">
+                            <h3 class="font-bold text-2xl">10 - 11 ශ්‍රේණි</h3>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-stone-800 dark:text-stone-100 mb-3 text-3xl">ජ්‍යෙෂ්ඨ අංශය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed mb-6">දහම් පාසල් අවසාන සහ ධර්මාචාර්ය විභාග සඳහා විශේෂ පුහුණුව.</p>
+                            </div>
+                            <div class="flex items-center text-stone-700 dark:text-stone-300 text-lg font-semibold bg-stone-50 dark:bg-stone-800 p-3 rounded-lg border border-stone-100 dark:border-stone-700">
+                                <i data-lucide="clock" class="w-[18px] h-[18px] mr-2 text-stone-500 dark:text-stone-400"></i>
+                                ඉරිදා පෙ.ව 8:00 - 12:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Teachers Page -->
+        <section id="teachers" class="page-section animate-fade-in">
+            <div class="container mx-auto px-4 py-16 min-h-screen">
+                <div class="text-center mb-16">
+                    <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">ගුරු මණ්ඩලය</span>
+                    <h2 class="text-5xl font-extrabold text-stone-800 dark:text-stone-100 mt-2">ආචාර්ය මණ්ඩලය</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Teachers list -->
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">පූජ්‍ය අගලවත්තේ සෝභිත හිමි</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">ප්‍රධානාචාර්ය</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 15ක පළපුරුද්ද
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">ඩබ්. ඒ. කරුණාරත්න මහතා</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">නියෝජ්‍ය ප්‍රධානාචාර්ය</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 20ක පළපුරුද්ද
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">ශ්‍රියානි පෙරේරා මිය</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">ප්‍රාථමික අංශ ප්‍රධානී</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 12ක පළපුරුද්ද
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">කමල් දේශප්‍රිය මහතා</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">අභිධර්ම ආචාර්ය</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 8ක පළපුරුද්ද
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">නිරෝෂා කුමාරි මිය</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">පාලි භාෂා ආචාරිණී</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 10ක පළපුරුද්ද
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-stone-900 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center border border-stone-200 dark:border-stone-800">
+                        <div class="w-20 h-20 mx-auto bg-stone-50 dark:bg-stone-800 rounded-full flex items-center justify-center mb-5 border border-stone-200 dark:border-stone-700">
+                            <i data-lucide="users" class="w-[32px] h-[32px] text-stone-400 dark:text-stone-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2">සුනිල් ජයවර්ධන මහතා</h3>
+                        <p class="text-stone-500 dark:text-stone-400 font-medium mb-4 text-xl">ජ්‍යෙෂ්ඨ අංශ ආචාර්ය</p>
+                        <div class="inline-block bg-stone-100 dark:bg-stone-800 px-5 py-2 rounded-full text-lg text-stone-600 dark:text-stone-300 font-semibold border border-stone-200 dark:border-stone-700">
+                            වසර 5ක පළපුරුද්ද
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Contact Page -->
+        <section id="contact" class="page-section animate-fade-in">
+            <div class="container mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">විමසීම්</span>
+                    <h2 class="text-5xl font-extrabold text-stone-800 dark:text-stone-100 mt-2">සම්බන්ධ වන්න</h2>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
+                    <!-- Contact Info -->
+                    <div class="lg:w-1/3 space-y-6">
+                        <div class="bg-white dark:bg-stone-900 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-800 flex items-start space-x-4">
+                            <div class="bg-stone-100 dark:bg-stone-800 p-3 rounded-full text-stone-600 dark:text-stone-300">
+                                <i data-lucide="map-pin" class="w-[24px] h-[24px]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-2xl text-stone-800 dark:text-stone-100 mb-2">ලිපිනය</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed">ශ්‍රී සම්බෝධි විහාරස්ථානය,<br/>බෞද්ධාලෝක මාවත,<br/>කොළඹ 07.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-stone-900 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-800 flex items-start space-x-4">
+                            <div class="bg-stone-100 dark:bg-stone-800 p-3 rounded-full text-stone-600 dark:text-stone-300">
+                                <i data-lucide="phone" class="w-[24px] h-[24px]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-2xl text-stone-800 dark:text-stone-100 mb-2">දුරකථන අංක</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl leading-relaxed">011 234 5678<br/>077 123 4567</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-stone-900 p-6 rounded-xl shadow-sm border border-stone-200 dark:border-stone-800 flex items-start space-x-4">
+                            <div class="bg-stone-100 dark:bg-stone-800 p-3 rounded-full text-stone-600 dark:text-stone-300">
+                                <i data-lucide="mail" class="w-[24px] h-[24px]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-2xl text-stone-800 dark:text-stone-100 mb-2">විද්‍යුත් තැපෑල</h4>
+                                <p class="text-stone-600 dark:text-stone-400 text-xl">info@srisambodhi.lk</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:w-2/3 bg-white dark:bg-stone-900 p-8 md:p-10 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-800">
+                        <h3 class="text-4xl font-bold text-stone-800 dark:text-stone-100 mb-6">අපට පණිවිඩයක් එවන්න</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-2">ඔබගේ නම</label>
+                                    <input required type="text" class="w-full px-4 py-3 rounded-lg bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:ring-2 focus:ring-stone-800 dark:focus:ring-stone-400 outline-none transition text-xl" placeholder="නම ඇතුළත් කරන්න" />
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-2">දුරකථන අංකය</label>
+                                    <input required type="tel" class="w-full px-4 py-3 rounded-lg bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:ring-2 focus:ring-stone-800 dark:focus:ring-stone-400 outline-none transition text-xl" placeholder="07X XXX XXXX" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-2">විද්‍යුත් තැපෑල (අත්‍යවශ්‍ය නොවේ)</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:ring-2 focus:ring-stone-800 dark:focus:ring-stone-400 outline-none transition text-xl" placeholder="example@email.com" />
+                            </div>
+                            <div>
+                                <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-2">පණිවිඩය</label>
+                                <textarea required rows="5" class="w-full px-4 py-3 rounded-lg bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:ring-2 focus:ring-stone-800 dark:focus:ring-stone-400 outline-none transition resize-none text-xl" placeholder="ඔබගේ පණිවිඩය මෙහි ලියන්න..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-stone-800 dark:bg-stone-200 hover:bg-stone-900 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-4 px-8 rounded-xl shadow-sm transition-transform hover:-translate-y-1 flex items-center justify-center space-x-2 text-2xl">
+                                <span>පණිවිඩය යවන්න</span>
+                                <i data-lucide="send" class="w-[24px] h-[24px]"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Registration Form Page -->
+        <section id="register" class="page-section animate-fade-in min-h-screen">
+            <div class="container mx-auto px-4 py-16">
+                <div class="max-w-3xl mx-auto bg-white dark:bg-stone-900 rounded-2xl shadow-md overflow-hidden border border-stone-200 dark:border-stone-800">
+                    <div class="bg-stone-800 dark:bg-stone-950 py-8 px-8 text-center border-b-4 border-yellow-600 dark:border-yellow-500">
+                        <h2 class="text-4xl font-extrabold text-white mb-2">නව ශිෂ්‍ය ලියාපදිංචිය</h2>
+                        <p class="text-stone-300 dark:text-stone-400 text-xl">2026 අධ්‍යයන වර්ෂය සඳහා අයදුම්පත</p>
+                    </div>
+                    
+                    <form onsubmit="handleRegister(event)" class="p-8 md:p-10 space-y-8">
+                        <div class="space-y-5">
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 border-b border-stone-200 dark:border-stone-700 pb-2">ශිෂ්‍ය තොරතුරු</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">සම්පූර්ණ නම *</label>
+                                    <input id="reg-name" required type="text" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">උපන් දිනය *</label>
+                                    <input id="reg-dob" required type="date" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">ඇතුළත් වන ශ්‍රේණිය *</label>
+                                    <select id="reg-grade" required class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl">
+                                        <option value="">තෝරන්න...</option>
+                                        <option value="1">1 ශ්‍රේණිය</option>
+                                        <option value="2">2 ශ්‍රේණිය</option>
+                                        <option value="3">3 ශ්‍රේණිය</option>
+                                        <option value="4">4 ශ්‍රේණිය</option>
+                                        <option value="5">5 ශ්‍රේණිය</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">පාසල</label>
+                                    <input id="reg-school" type="text" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5 pt-2">
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 border-b border-stone-200 dark:border-stone-700 pb-2">මව්පිය / භාරකරු සහ ගිණුම් තොරතුරු</h3>
+                            <div>
+                                <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">භාරකරුගේ නම *</label>
+                                <input id="reg-guardian" required type="text" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">විද්‍යුත් තැපෑල (Email) *</label>
+                                    <input id="reg-email" required type="email" placeholder="ප්‍රවේශ වීම සඳහා" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">මුරපදය (Password) *</label>
+                                    <input id="reg-password" required type="password" placeholder="අවම අකුරු 6ක්" minlength="6" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">ජංගම දුරකථන අංකය *</label>
+                                    <input id="reg-phone" required type="tel" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                                <div>
+                                    <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">ලිපිනය *</label>
+                                    <input id="reg-address" required type="text" class="w-full px-4 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6">
+                            <button type="submit" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-4 px-8 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 text-2xl">
+                                ලියාපදිංචි වන්න
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Sign In Page -->
+        <section id="signin" class="page-section animate-fade-in min-h-screen">
+            <div class="container mx-auto px-4 py-20 flex justify-center">
+                <div class="w-full max-w-md bg-white dark:bg-stone-900 rounded-2xl shadow-md overflow-hidden border border-stone-200 dark:border-stone-800">
+                    <div class="bg-stone-800 dark:bg-stone-950 py-6 px-8 text-center border-b-4 border-yellow-600 dark:border-yellow-500">
+                        <i data-lucide="log-in" class="w-[48px] h-[48px] text-yellow-500 mx-auto mb-3"></i>
+                        <h2 class="text-3xl font-extrabold text-white mb-1">පුරනය වන්න</h2>
+                        <p class="text-stone-300 dark:text-stone-400">ඔබගේ ගිණුමට ඇතුළු වන්න</p>
+                    </div>
+                    
+                    <form onsubmit="handleLogin(event)" class="p-8 space-y-6">
+                        <div id="login-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-lg" role="alert">
+                            විද්‍යුත් තැපෑල හෝ මුරපදය වැරදියි!
+                        </div>
+                        <div>
+                            <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">විද්‍යුත් තැපෑල</label>
+                            <input id="login-email" required type="email" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                        </div>
+                        <div>
+                            <label class="block text-xl font-semibold text-stone-700 dark:text-stone-300 mb-1.5">මුරපදය</label>
+                            <input id="login-password" required type="password" class="w-full px-4 py-3 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white rounded-lg focus:ring-2 focus:ring-stone-800 outline-none transition text-xl" />
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-stone-800 dark:bg-stone-200 hover:bg-stone-900 dark:hover:bg-white text-white dark:text-stone-900 font-bold py-3.5 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 text-2xl flex justify-center items-center space-x-2">
+                            <span>ඇතුළු වන්න</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Profile Page -->
+        <section id="profile" class="page-section animate-fade-in min-h-screen">
+            <div class="container mx-auto px-4 py-16">
+                <div class="max-w-4xl mx-auto bg-white dark:bg-stone-900 rounded-2xl shadow-md border border-stone-200 dark:border-stone-800 overflow-hidden">
+                    <!-- Profile Header -->
+                    <div class="bg-stone-800 dark:bg-stone-950 p-8 flex flex-col items-center border-b-4 border-yellow-600 dark:border-yellow-500 relative">
+                        <button onclick="handleSignOut()" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold flex items-center space-x-2 transition text-lg shadow-sm">
+                            <i data-lucide="log-out" class="w-[18px] h-[18px]"></i>
+                            <span>ඉවත් වන්න</span>
+                        </button>
+                        
+                        <div class="relative w-32 h-32 rounded-full bg-yellow-600 text-white flex items-center justify-center text-5xl font-bold border-4 border-stone-200 dark:border-stone-700 overflow-hidden shadow-lg mb-4">
+                            <span id="profile-page-initial">A</span>
+                            <img id="profile-page-img" src="" class="hidden w-full h-full object-cover" alt="Profile Photo" />
+                            
+                            <!-- Photo Upload Overlay -->
+                            <label for="photo-upload" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer">
+                                <i data-lucide="camera" class="w-[32px] h-[32px] text-white"></i>
+                            </label>
+                            <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)" />
+                        </div>
+                        
+                        <h2 id="profile-page-name" class="text-4xl font-extrabold text-white mb-1">නම</h2>
+                        <p id="profile-page-grade" class="text-stone-300 dark:text-stone-400 text-xl">ශ්‍රේණිය</p>
+                    </div>
+
+                    <!-- Profile Details -->
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-6 border-b border-stone-200 dark:border-stone-700 pb-2">ඔබගේ තොරතුරු</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xl">
+                            <div>
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">විද්‍යුත් තැපෑල</p>
+                                <p id="profile-page-email" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                            <div>
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">උපන් දිනය</p>
+                                <p id="profile-page-dob" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                            <div>
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">පාසල</p>
+                                <p id="profile-page-school" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                            <div>
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">දුරකථන අංකය</p>
+                                <p id="profile-page-phone" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                            <div class="md:col-span-2">
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">ලිපිනය</p>
+                                <p id="profile-page-address" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                            <div class="md:col-span-2">
+                                <p class="text-stone-500 dark:text-stone-400 font-semibold mb-1">භාරකරුගේ නම</p>
+                                <p id="profile-page-guardian" class="text-stone-800 dark:text-stone-100 font-medium"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Dhamma School Info Page -->
+        <section id="school-info" class="page-section animate-fade-in min-h-screen">
+            <div class="container mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <span class="text-yellow-600 dark:text-yellow-500 font-bold tracking-wider text-lg uppercase">ශිෂ්‍ය අංශය</span>
+                    <h2 class="text-5xl font-extrabold text-stone-800 dark:text-stone-100 mt-2">දහම් පාසල් තොරතුරු</h2>
+                </div>
+                
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Announcements Box -->
+                    <div class="bg-white dark:bg-stone-900 p-8 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-800">
+                        <div class="flex items-center space-x-3 mb-6 border-b border-stone-200 dark:border-stone-700 pb-4">
+                            <i data-lucide="bell" class="w-[32px] h-[32px] text-yellow-600"></i>
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100">විශේෂ දැනුම්දීම්</h3>
+                        </div>
+                        <ul class="space-y-4 text-xl text-stone-700 dark:text-stone-300">
+                            <li class="flex items-start space-x-3">
+                                <span class="text-yellow-600 mt-1">●</span>
+                                <span>ලබන ඉරිදා (පොහොය දින) දහම් පාසල නිවාඩු වේ. සියලු දෙනා විහාරස්ථානයේ සීල සමාදාන වැඩසටහනට සහභාගී වන්න.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-yellow-600 mt-1">●</span>
+                                <span>වාර්ෂික ත්‍යාග ප්‍රදානෝත්සවය සඳහා අයදුම්පත් භාරදීමේ අවසන් දිනය ලබන මස 15 වේ.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Exam & Results Box -->
+                    <div class="bg-white dark:bg-stone-900 p-8 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-800">
+                        <div class="flex items-center space-x-3 mb-6 border-b border-stone-200 dark:border-stone-700 pb-4">
+                            <i data-lucide="award" class="w-[32px] h-[32px] text-yellow-600"></i>
+                            <h3 class="text-3xl font-bold text-stone-800 dark:text-stone-100">විභාග සහ ප්‍රතිඵල</h3>
+                        </div>
+                        <div class="space-y-4 text-xl">
+                            <div class="bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700">
+                                <p class="font-bold text-stone-800 dark:text-stone-100">පළමු වාර පරීක්ෂණය</p>
+                                <p class="text-stone-600 dark:text-stone-400 text-lg mt-1">දිනය: මාර්තු 25 - 26</p>
+                            </div>
+                            <div class="bg-stone-50 dark:bg-stone-800 p-4 rounded-lg border border-stone-200 dark:border-stone-700">
+                                <p class="font-bold text-stone-800 dark:text-stone-100">පසුගිය වාර විභාග ප්‍රතිඵල</p>
+                                <button class="mt-2 text-yellow-600 hover:text-yellow-700 font-semibold underline">ප්‍රතිඵල නරඹන්න</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="bg-stone-900 text-stone-300 pt-12 pb-6 border-t-4 border-stone-800">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <i data-lucide="book-open" class="w-[32px] h-[32px] text-stone-400"></i>
+                    <h2 class="text-2xl font-bold text-white">ශ්‍රී සම්බෝධි</h2>
+                </div>
+                <p class="text-stone-400 leading-relaxed text-sm">
+                    අපගේ දහම් පාසල දරුවන්ගේ අධ්‍යාත්මික හා ගුණධර්ම සංවර්ධනය උදෙසා කැපවී ක්‍රියා කරයි. බුදු දහමේ උතුම් පණිවිඩය දරු පරපුරට දායාද කිරීම අපගේ අරමුණයි.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-4 border-b border-stone-700 pb-2 inline-block">ඉක්මන් සබැඳි</h3>
+                <ul class="space-y-2 mt-2">
+                    <li><button onclick="navigateTo('home')" class="hover:text-white transition flex items-center space-x-2"><i data-lucide="chevron-right" class="w-[14px] h-[14px]"></i><span>මුල් පිටුව</span></button></li>
+                    <li><button onclick="navigateTo('about')" class="hover:text-white transition flex items-center space-x-2"><i data-lucide="chevron-right" class="w-[14px] h-[14px]"></i><span>අප ගැන</span></button></li>
+                    <li><button onclick="navigateTo('classes')" class="hover:text-white transition flex items-center space-x-2"><i data-lucide="chevron-right" class="w-[14px] h-[14px]"></i><span>දහම් පන්ති</span></button></li>
+                    <li><button onclick="navigateTo('register')" class="hover:text-white transition flex items-center space-x-2"><i data-lucide="chevron-right" class="w-[14px] h-[14px]"></i><span>ලියාපදිංචි වන්න</span></button></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-4 border-b border-stone-700 pb-2 inline-block">සම්බන්ධ වන්න</h3>
+                <ul class="space-y-4 text-sm mt-2">
+                    <li class="flex items-start space-x-3">
+                        <i data-lucide="map-pin" class="w-[18px] h-[18px] mt-1 text-stone-400 flex-shrink-0"></i>
+                        <span>ශ්‍රී සම්බෝධි විහාරස්ථානය,<br/>බෞද්ධාලෝක මාවත, කොළඹ 07.</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i data-lucide="phone" class="w-[18px] h-[18px] text-stone-400 flex-shrink-0"></i>
+                        <span>011 234 5678 / 077 123 4567</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i data-lucide="mail" class="w-[18px] h-[18px] text-stone-400 flex-shrink-0"></i>
+                        <span>info@srisambodhi.lk</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-10 pt-6 border-t border-stone-800 text-center text-sm text-stone-500">
+            <p>&copy; <span id="year"></span> ශ්‍රී සම්බෝධි දහම් පාසල. සියලුම හිමිකම් ඇවිරිණි.</p>
+        </div>
+    </footer>
+
+    <!-- Message Modal -->
+    <div id="message-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white dark:bg-stone-800 rounded-xl shadow-2xl p-8 max-w-sm w-full text-center transform transition-all animate-bounce-in border dark:border-stone-700">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900 mb-4">
+                <i data-lucide="heart" class="w-[32px] h-[32px] text-green-600 dark:text-green-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">සාර්ථකයි!</h3>
+            <p id="modal-text" class="text-gray-600 dark:text-stone-300 mb-6 text-lg"></p>
+            <button onclick="closeModal()" class="w-full bg-stone-800 hover:bg-stone-900 dark:bg-stone-700 dark:hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-xl">
+                හරි
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // State variables
+        let isMobileMenuOpen = false;
+        let isDarkMode = false;
+        let currentUser = JSON.parse(localStorage.getItem('dhammaUser')) || null;
+        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+        // Initialize Authentication UI on load
+        updateAuthUI();
+
+        // Navigation Function
+        function navigateTo(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show target section
+            document.getElementById(tabId).classList.add('active');
+
+            // Update Desktop Nav Styles
+            document.querySelectorAll('.desktop-nav-btn').forEach(btn => {
+                if(btn.dataset.target === tabId) {
+                    btn.classList.add('bg-stone-800', 'dark:bg-stone-200', 'text-white', 'dark:text-stone-900', 'shadow-md');
+                    btn.classList.remove('text-stone-600', 'dark:text-stone-300', 'hover:bg-stone-100', 'dark:hover:bg-stone-800', 'hover:text-stone-900', 'dark:hover:text-white');
+                } else {
+                    btn.classList.remove('bg-stone-800', 'dark:bg-stone-200', 'text-white', 'dark:text-stone-900', 'shadow-md');
+                    btn.classList.add('text-stone-600', 'dark:text-stone-300', 'hover:bg-stone-100', 'dark:hover:bg-stone-800', 'hover:text-stone-900', 'dark:hover:text-white');
+                }
+            });
+
+            // Update Mobile Nav Styles
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if(btn.dataset.target === tabId) {
+                    btn.classList.add('bg-stone-800', 'dark:bg-stone-200', 'text-white', 'dark:text-stone-900');
+                    btn.classList.remove('text-stone-700', 'dark:text-stone-300', 'hover:bg-stone-200', 'dark:hover:bg-stone-800');
+                } else {
+                    btn.classList.remove('bg-stone-800', 'dark:bg-stone-200', 'text-white', 'dark:text-stone-900');
+                    btn.classList.add('text-stone-700', 'dark:text-stone-300', 'hover:bg-stone-200', 'dark:hover:bg-stone-800');
+                }
+            });
+
+            // If navigating to profile, load data
+            if(tabId === 'profile' && isLoggedIn) {
+                populateProfilePage();
+            }
+
+            // Close mobile menu if open
+            if(isMobileMenuOpen) toggleMobileMenu();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (isMobileMenuOpen) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            const html = document.documentElement;
+            const desktopIcon = document.getElementById('theme-icon-desktop');
+            const mobileIcon = document.getElementById('theme-icon-mobile');
+
+            if (isDarkMode) {
+                html.classList.add('dark');
+                desktopIcon.setAttribute('data-lucide', 'sun');
+                mobileIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                html.classList.remove('dark');
+                desktopIcon.setAttribute('data-lucide', 'moon');
+                mobileIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        // Modal Functions
+        function showMessage(msg) {
+            document.getElementById('modal-text').textContent = msg;
+            document.getElementById('message-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('message-modal').classList.add('hidden');
+        }
+
+        // --- Authentication & Profile Logic ---
+
+        function updateAuthUI() {
+            const navRegBtnDesktop = document.getElementById('nav-reg-btn-desktop');
+            const navSignInBtnDesktop = document.getElementById('nav-signin-btn-desktop');
+            const navProfileBtnDesktop = document.getElementById('nav-profile-btn-desktop');
+            
+            const mobileAuthSection = document.getElementById('mobile-auth-section');
+            const navProfileBtnMobile = document.getElementById('nav-profile-btn-mobile');
+            
+            const homeMainActionText = document.getElementById('home-main-action-text');
+
+            if (isLoggedIn && currentUser) {
+                // Logged In State
+                navRegBtnDesktop.classList.add('hidden');
+                navSignInBtnDesktop.classList.add('hidden');
+                navProfileBtnDesktop.classList.remove('hidden');
+                
+                mobileAuthSection.classList.add('hidden');
+                navProfileBtnMobile.classList.remove('hidden');
+
+                homeMainActionText.textContent = 'දහම් පාසල් තොරතුරු';
+
+                // Set Avatars
+                setAvatarUI(currentUser);
+
+            } else {
+                // Logged Out State
+                navRegBtnDesktop.classList.remove('hidden');
+                navSignInBtnDesktop.classList.remove('hidden');
+                navProfileBtnDesktop.classList.add('hidden');
+                
+                mobileAuthSection.classList.remove('hidden');
+                navProfileBtnMobile.classList.add('hidden');
+
+                homeMainActionText.textContent = 'අලුතින් ලියාපදිංචි වන්න';
+            }
+        }
+
+        function setAvatarUI(user) {
+            const initial = user.name.charAt(0).toUpperCase();
+            
+            // Desktop
+            const initDesktop = document.getElementById('profile-initial-desktop');
+            const imgDesktop = document.getElementById('profile-img-desktop');
+            
+            // Mobile
+            const initMobile = document.getElementById('profile-initial-mobile');
+            const imgMobile = document.getElementById('profile-img-mobile');
+
+            if (user.photoBase64) {
+                imgDesktop.src = user.photoBase64;
+                imgMobile.src = user.photoBase64;
+                imgDesktop.classList.remove('hidden');
+                imgMobile.classList.remove('hidden');
+                initDesktop.classList.add('hidden');
+                initMobile.classList.add('hidden');
+            } else {
+                imgDesktop.classList.add('hidden');
+                imgMobile.classList.add('hidden');
+                initDesktop.classList.remove('hidden');
+                initMobile.classList.remove('hidden');
+                initDesktop.textContent = initial;
+                initMobile.textContent = initial;
+            }
+        }
+
+        function handleMainAction() {
+            if (isLoggedIn) {
+                navigateTo('school-info');
+            } else {
+                navigateTo('register');
+            }
+        }
+
+        // Form Handlers
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showMessage('ඔබගේ පණිවිඩය අප වෙත සාර්ථකව ලැබුණි. අප ඉක්මනින් ඔබව සම්බන්ධ කරගන්නෙමු.');
+            e.target.reset();
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            
+            // Collect User Data
+            const newUser = {
+                name: document.getElementById('reg-name').value,
+                dob: document.getElementById('reg-dob').value,
+                grade: document.getElementById('reg-grade').value,
+                school: document.getElementById('reg-school').value,
+                guardian: document.getElementById('reg-guardian').value,
+                email: document.getElementById('reg-email').value,
+                password: document.getElementById('reg-password').value,
+                phone: document.getElementById('reg-phone').value,
+                address: document.getElementById('reg-address').value,
+                photoBase64: null
+            };
+
+            // Save to LocalStorage
+            localStorage.setItem('dhammaUser', JSON.stringify(newUser));
+            currentUser = newUser;
+            
+            showMessage('ලියාපදිංචි කිරීම සාර්ථකයි! කරුණාකර ඔබගේ විද්‍යුත් තැපෑල සහ මුරපදය භාවිතා කර ඇතුළු වන්න.');
+            e.target.reset();
+            
+            // Go to Sign In after 3 seconds
+            setTimeout(() => {
+                closeModal();
+                navigateTo('signin');
+            }, 3000);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const errorBox = document.getElementById('login-error');
+
+            if (currentUser && currentUser.email === email && currentUser.password === pass) {
+                // Success
+                errorBox.classList.add('hidden');
+                isLoggedIn = true;
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                updateAuthUI();
+                e.target.reset();
+                navigateTo('profile');
+            } else {
+                // Failed
+                errorBox.classList.remove('hidden');
+            }
+        }
+
+        function handleSignOut() {
+            isLoggedIn = false;
+            localStorage.setItem('isLoggedIn', 'false');
+            updateAuthUI();
+            navigateTo('home');
+        }
+
+        // Profile Details Populator
+        function populateProfilePage() {
+            if(!currentUser) return;
+            
+            document.getElementById('profile-page-name').textContent = currentUser.name;
+            document.getElementById('profile-page-grade').textContent = currentUser.grade + " ශ්‍රේණිය";
+            
+            document.getElementById('profile-page-email').textContent = currentUser.email;
+            document.getElementById('profile-page-dob').textContent = currentUser.dob;
+            document.getElementById('profile-page-school').textContent = currentUser.school || "සඳහන් කර නැත";
+            document.getElementById('profile-page-phone').textContent = currentUser.phone;
+            document.getElementById('profile-page-address').textContent = currentUser.address;
+            document.getElementById('profile-page-guardian').textContent = currentUser.guardian;
+
+            // Profile Page Avatar setup
+            const initial = currentUser.name.charAt(0).toUpperCase();
+            const initSpan = document.getElementById('profile-page-initial');
+            const imgEl = document.getElementById('profile-page-img');
+
+            if (currentUser.photoBase64) {
+                imgEl.src = currentUser.photoBase64;
+                imgEl.classList.remove('hidden');
+                initSpan.classList.add('hidden');
+            } else {
+                imgEl.classList.add('hidden');
+                initSpan.classList.remove('hidden');
+                initSpan.textContent = initial;
+            }
+        }
+
+        // Profile Photo Upload
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    
+                    // Update current user
+                    currentUser.photoBase64 = base64Image;
+                    localStorage.setItem('dhammaUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    populateProfilePage();
+                    updateAuthUI();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
